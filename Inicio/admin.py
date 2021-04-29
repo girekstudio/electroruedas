@@ -25,6 +25,18 @@ class EmpresaAdmin(admin.ModelAdmin):
     list_display = Attr(Empresa)
     list_display_links = Attr(Empresa)
 
+
+@admin.register(Valor)
+class ValorAdmin(admin.ModelAdmin):
+    list_display = Attr(Valor)
+    list_display_links = Attr(Valor)
+
+@admin.register(Beneficios)
+class BeneficiosAdmin(admin.ModelAdmin):
+    list_display = Attr(Beneficios)
+    list_display_links = Attr(Beneficios)
+
+
 @admin.register(Contacto_electroruedas)
 class Contacto_electroruedasAdmin(admin.ModelAdmin):
     list_display = Attr(Contacto_electroruedas)

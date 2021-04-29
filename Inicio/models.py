@@ -21,6 +21,8 @@ class Electroruedas(models.Model):
 
 
 class Slider(models.Model):
+    titulo = models.CharField(max_length=100, null=True, blank=True)
+    detalle= models.TextField(max_length=100, null=True, blank=True)
     imagen=models.ImageField(upload_to='media', null=True, blank=True, help_text='imagenes 500*900')
 
     def miniatura(self):
@@ -36,6 +38,7 @@ class Electroruedas_galeria(models.Model):
     imagen_3=models.ImageField(upload_to='media', null=True, blank=True, help_text='imagenes 500*900')
     imagen_4=models.ImageField(upload_to='media', null=True, blank=True, help_text='imagenes 500*900')
     imagen_5=models.ImageField(upload_to='media', null=True, blank=True, help_text='imagenes 500*900')
+    imagen_6 = models.ImageField(upload_to='media', null=True, blank=True, help_text='imagenes 500*900')
 
     def miniatura(self):
         return mark_safe("<img src='/media/%s' style='width: 200px'>"%self.imagen_1)
@@ -49,15 +52,37 @@ class Empresa(models.Model):
     nosotros = models.TextField(max_length=500, null=True, blank=True)
     mision = models.TextField(max_length=500, null=True, blank=True)
     vision = models.TextField(max_length=500, null=True, blank=True)
-    valor_1 = models.TextField(max_length=500, null=True, blank=True)
-    valor_2 = models.TextField(max_length=500, null=True, blank=True)
-    valor_3 = models.TextField(max_length=500, null=True, blank=True)
-    valor_4 = models.TextField(max_length=500, null=True, blank=True)
+    titulo_1 = models.TextField(max_length=500, null=True, blank=True)
+    sub_titulo_1 = models.TextField(max_length=500, null=True, blank=True)
+    titulo_2 = models.TextField(max_length=500, null=True, blank=True)
+    sub_titulo_2 = models.TextField(max_length=500, null=True, blank=True)
+    titulo_3 = models.TextField(max_length=500, null=True, blank=True)
+    sub_titulo_3 = models.TextField(max_length=500, null=True, blank=True)
+    titulo_4 = models.TextField(max_length=500, null=True, blank=True)
+    sub_titulo_4 = models.TextField(max_length=500, null=True, blank=True)
+    titulo_5 = models.TextField(max_length=500, null=True, blank=True)
+    sub_titulo_5 = models.TextField(max_length=500, null=True, blank=True)
+    titulo_6 = models.TextField(max_length=500, null=True, blank=True)
+    sub_titulo_6 = models.TextField(max_length=500, null=True, blank=True)
 
     class Meta:
         verbose_name_plural = "4. Empresa"
 
 
+class Valor(models.Model):
+    titulo = models.CharField(max_length=100, null=True, blank=True)
+    detalle = models.TextField(max_length=500, null=True, blank=True)
+
+    class Meta:
+        verbose_name_plural = "5. Valor"
+
+class Beneficios(models.Model):
+    titulo = models.CharField(max_length=100, null=True, blank=True)
+    detalle = models.TextField(max_length=500, null=True, blank=True)
+
+
+    class Meta:
+        verbose_name_plural = "6. Beneficios"
 
 
 
@@ -67,10 +92,14 @@ class Contacto_electroruedas(models.Model):
     celular_2 = models.CharField(max_length=100, null=True, blank=True)
     correo = models.EmailField(null=True, blank=True)
     direccion = models.CharField(max_length=100, null=True, blank=True)
+    horario_lu_vier = models.CharField(max_length=100, null=True, blank=True)
+    horario_sab = models.CharField(max_length=100, null=True, blank=True)
+    horario_dom = models.CharField(max_length=100, null=True, blank=True)
+
 
 
     class Meta:
-        verbose_name_plural = "6. Contacto ElecctroRuedas"
+        verbose_name_plural = "7. Contacto ElecctroRuedas"
 
 
 
@@ -83,4 +112,4 @@ class Contacto_redes(models.Model):
     behance = models.CharField(max_length=100, null=True, blank=True)
 
     class Meta:
-        verbose_name_plural = "7. Contácto Redes Sociales"
+        verbose_name_plural = "8. Contácto Redes Sociales"
