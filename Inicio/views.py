@@ -29,6 +29,8 @@ def empresa(request):
         'electro_ruedas': Electroruedas.objects.all().first(),
         'valor': Valor.objects.all(),
         'empresa': Empresa.objects.all().first(),
+        'contacto_electroruedas': Contacto_electroruedas.objects.all().first(),
+        'contacto_redes': Contacto_redes.objects.all().first(),
     }
     return render(request, 'about-me.html', contexto)
 
@@ -61,8 +63,11 @@ def producto(request,id):
 
 def distribuidor(request):
     contexto ={
+        'electro_galeia': Electroruedas_galeria.objects.all().first(),
         'electro_ruedas':Electroruedas.objects.all().first(),
         'empresa' : Empresa.objects.all().first(),
+        'contacto_electroruedas': Contacto_electroruedas.objects.all().first(),
+        'contacto_redes': Contacto_redes.objects.all().first(),
     }
     return render(request, 'page-distribuidor.html', contexto)
 
