@@ -1,4 +1,20 @@
 {% extends 'index-corporate.html' %}
+ {% block metas %}
+    <meta property="og:url" content="http://electroruedas.girekstudio.com/producto/{{ produc.id }}"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="ElectroRuedas"/>
+    <meta property="og:description" content="Vehículos eléctricos"/>
+     {% for imagen in produc.imagen_product_set.all%}
+         {% if forloop.counter <= 1 %}
+             <meta property="og:image" content="/media/{{ imagen.imagen }}"/>
+         {% endif %}
+     {% endfor %}
+
+    <meta property="og:image:width" content="600"/>
+    <meta property="og:image:height" content="600"/>
+ {% endblock %}
+
+
 {% block principal %}
 
 			<div role="main" class="main shop pt-4">
@@ -52,6 +68,7 @@
 {#								</div>#}
 
 								<h1 class="mb-0 font-weight-bold text-7">{{ product.titulo }}</h1>
+                                <p style="margin-top: -5px">{{ product.tipo_producto.titulo }}</p>
 
 								<div class="pb-0 clearfix d-flex align-items-center">
 									<div title="Rated 3 out of 5" class="float-left">
