@@ -1,7 +1,11 @@
+from colorfield.fields import ColorField
 from django.db import models
 
 # Create your models here.
 from django.utils.safestring import mark_safe
+
+from electroruedas.snippers import ResizeImageMixin
+
 
 class Marcas(models.Model):
     titulo=models.CharField(max_length=50, null=True, blank=True)
@@ -49,31 +53,29 @@ class Product(models.Model):
     descripcion = models.TextField(max_length=500, null=True, blank=True)
     precio = models.DecimalField(max_digits=999, decimal_places=2)
     precio_oferta = models.DecimalField(max_digits=999, decimal_places=2, null=True, blank=True)
-    imagen_1 = models.ImageField(upload_to='media', null=True, blank=True, help_text='360x360')
-    imagen_2 = models.ImageField(upload_to='media', null=True, blank=True, help_text='360x360')
-    imagen_3 = models.ImageField(upload_to='media', null=True, blank=True, help_text='360x360')
-    imagen_4 = models.ImageField(upload_to='media', null=True, blank=True, help_text='360x360')
-    imagen_5 = models.ImageField(upload_to='media', null=True, blank=True, help_text='360x360')
-    imagen_6 = models.ImageField(upload_to='media', null=True, blank=True, help_text='360x360')
-    blanco = models.BooleanField(default=False)
-    gris = models.BooleanField(default=False)
-    negro = models.BooleanField(default=False)
-    rojo = models.BooleanField(default=False)
-    amarillo = models.BooleanField(default=False)
-    azul = models.BooleanField(default=False)
-    celeste = models.BooleanField(default=False)
-    verde = models.BooleanField(default=False)
-    turquesa = models.BooleanField(default=False)
-    violeta = models.BooleanField(default=False)
-    cafe = models.BooleanField(default=False)
     create_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+
     def __str__(self):
         return '%s' % (self.titulo)
 
-    def miniatura(self):
-        return mark_safe("<img src='/media/%s' style='width: 100px'>" % self.imagen_1)
 
 
 
     class Meta:
         verbose_name_plural = "3. Producto "
+
+
+class Imagen_product(models.Model, ResizeImageMixin):
+    producto=models.ForeignKey(Product, on_delete=models.CASCADE,)
+    imagen= models.ImageField(upload_to='producto', null=True, blank=True, help_text='360x360')
+    color=ColorField(default="#ffff")
+
+    def save(self, force_insert=False, force_update=False, using=None,
+             update_fields=None):
+        self.resize(self.imagen, (600, 600))
+        super(Imagen_product, self).save()
+
+    def delete(self, using=None, keep_parents=False):
+        storage, path = self.imagen.storage, self.imagen.path
+        super(Imagen_product, self).delete()
+        storage.delete(path)

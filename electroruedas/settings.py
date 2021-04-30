@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'colorfield',
     'Inicio',
     'Producto',
     'Clientes',
@@ -140,3 +141,10 @@ STATICFILES_DIRS=[
 
 MEDIA_URL="/media/"
 MEDIA_ROOT="media"
+
+#email:
+EMAIL_USE_TLS=True
+EMAIL_HOST='smtp.webfaction.com'
+EMAIL_HOST_USER='girekstudioinfo'
+EMAIL_HOST_PASSWORD='0310girekstudio'
+EMAIL_PORT='587'

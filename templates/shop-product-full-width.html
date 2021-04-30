@@ -19,41 +19,22 @@
 
 							<div class="thumb-gallery-wrapper">
 								<div class="thumb-gallery-detail owl-carousel owl-theme manual nav-inside nav-style-1 nav-dark mb-3">
-									<div>
-										<img alt="" class="img-fluid" src="/media/{{ product.imagen_1 }}" data-zoom-image="/media/{{ product.imagen_1 }}">
-									</div>
-									<div>
-										<img alt="" class="img-fluid" src="/media/{{ product.imagen_2 }}" data-zoom-image="/media/{{ product.imagen_2 }}">
-									</div>
-									<div>
-										<img alt="" class="img-fluid" src="/media/{{ product.imagen_3 }}" data-zoom-image="/media/{{ product.imagen_3 }}">
-									</div>
-									<div>
-										<img alt="" class="img-fluid" src="/media/{{ product.imagen_4 }}" data-zoom-image="/media/{{ product.imagen_4 }}">
-									</div>
-									<div>
-										<img alt="" class="img-fluid" src="/media/{{ product.imagen_5 }}" data-zoom-image="/media/{{ product.imagen_5 }}">
-									</div>
-									<div>
-										<img alt="" class="img-fluid" src="/media/{{ product.imagen_6 }}" data-zoom-image="/media/{{ product.imagen_6 }}">
-									</div>
-								</div>
+                                    {% for imagen in product.imagen_product_set.all %}
+                                        <div>
+                                            <img alt="" class="img-fluid" src="/media/{{ imagen.imagen }}" data-zoom-image="/media/{{ imagen.imagen }}">
+                                        </div>
+                                    {% endfor %}
+                            	</div>
 								<div class="thumb-gallery-thumbs owl-carousel owl-theme manual thumb-gallery-thumbs">
+
+                                    {% for imagen in product.imagen_product_set.all %}
 									<div class="cur-pointer">
-										<img alt="" class="img-fluid" src="/media/{{ product.imagen_1 }}">
+										<div class="img-fluid"style="background-color: {{ imagen.color }}">
+                                            <br>
+                                        </div>
 									</div>
-									<div class="cur-pointer">
-										<img alt="" class="img-fluid" src="/media/{{ product.imagen_2 }}">
-									</div>
-									<div class="cur-pointer">
-										<img alt="" class="img-fluid" src="/media/{{ product.imagen_3 }}">
-									</div>
-									<div class="cur-pointer">
-										<img alt="" class="img-fluid" src="/media/{{ product.imagen_4 }}">
-									</div>
-									<div class="cur-pointer">
-										<img alt="" class="img-fluid" src="/media/{{ product.imagen_5 }}">
-									</div>
+                                    {% endfor %}
+
 								</div>
 							</div>
 
@@ -338,10 +319,11 @@
                                                     </a>
                                                     <a href="/producto/{{ produ.id }}">
                                                         <div class="product-thumb-info-image product-thumb-info-image-effect">
-                                                            <img alt="" class="img-fluid" src="/media/{{ produ.imagen_1}}">
-
-                                                                <img alt="" class="img-fluid" src="/media/{{ produ.imagen_2}}">
-
+                                                            {% for imagen in produ.imagen_product_set.all %}
+                                                                {% if forloop.counter <= 2 %}
+                                                                <img alt="" class="img-fluid" src="/media/{{ imagen.imagen}}">
+                                                                {% endif %}
+                                                            {% endfor %}
                                                         </div>
                                                     </a>
                                                 </div>

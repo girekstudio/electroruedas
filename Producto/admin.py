@@ -18,7 +18,13 @@ class ProductAdmin(admin.ModelAdmin):
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = Attr(Product)+["miniatura"]
+    list_display = Attr(Product)
     list_display_links = Attr(Product)
+
+
+@admin.register(Imagen_product)
+class Imagen_productAdmin(admin.ModelAdmin):
+    list_display = Attr(Imagen_product)
+    list_display_links = Attr(Imagen_product)
 
 

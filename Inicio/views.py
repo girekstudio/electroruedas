@@ -4,6 +4,7 @@ from django.shortcuts import render
 from Clientes.models import Clientes
 from Inicio.models import *
 from Producto.models import *
+from electroruedas.snippers import enviar_email
 
 
 def index(request):
@@ -49,20 +50,37 @@ def productos(request):
     return render(request, 'shop-4-columns.html', contexto)
 
 def producto(request,id):
+    produc=Product.objects.all()
+    prod=produc.get(id=id)
     contexto ={
         'electro_ruedas':Electroruedas.objects.all().first(),
         'empresa' : Empresa.objects.all().first(),
         'marcas': Marcas.objects.all().first(),
         'tipo_product': Tipo_producto.objects.all(),
-        'product': Product.objects.get(id=id),
-        'productos': Product.objects.all(),
+        'product': prod,
+        'productos': produc.filter(tipo_producto=prod.tipo_producto),
         'contacto_electroruedas': Contacto_electroruedas.objects.all().first(),
         'contacto_redes': Contacto_redes.objects.all().first(),
     }
     return render(request, 'shop-product-full-width.html', contexto)
 
 def distribuidor(request):
+    success=""
+    if request.POST:
+        nombre=request.POST.get('nombre')
+        email =request.POST.get('email')
+        celular=request.POST.get('celular')
+        ciudad =request.POST.get('ciudad')
+        mensaje= request.POST['mensaje']
+
+        mensajeFinal = "El usuario %s con email: %s y celular: %s, de la ciudad de %s quiere conmunicarse con usted y dejo el siguiente mensaje:  %s"%(
+            nombre,email,celular,ciudad,mensaje
+        )
+        enviar_email('Mensaje desde el sitio web','','',mensajeFinal)
+        success="Pronto nos comunicaremos contigo, Muchas gracias por elegir Electro Ruedas"
+
     contexto ={
+        "mensaje":success,
         'electro_galeia': Electroruedas_galeria.objects.all().first(),
         'electro_ruedas':Electroruedas.objects.all().first(),
         'empresa' : Empresa.objects.all().first(),
