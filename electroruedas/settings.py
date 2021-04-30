@@ -144,7 +144,7 @@ MEDIA_ROOT="media"
 
 #email:
 EMAIL_USE_TLS=True
-EMAIL_HOST='smtp.webfaction.com'
-EMAIL_HOST_USER='girekstudioinfo'
-EMAIL_HOST_PASSWORD='0310girekstudio'
+EMAIL_HOST='smtp.gmail.com'
+EMAIL_HOST_USER='electroruedas.ec@gmail.com'
+EMAIL_HOST_PASSWORD='admin12345678ec'
 EMAIL_PORT='587'
