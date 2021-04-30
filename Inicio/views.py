@@ -76,7 +76,7 @@ def distribuidor(request):
         mensajeFinal = "El usuario %s con email: %s y celular: %s, de la ciudad de %s quiere conmunicarse con usted y dejo el siguiente mensaje:  %s"%(
             nombre,email,celular,ciudad,mensaje
         )
-        enviar_email('Mensaje desde el sitio web','electroruedas.ec@gmail.com','electroruedas.ec@gmail.com',mensajeFinal)
+        enviar_email('Mensaje desde el sitio web','electroruedas.ec@gmail.com',['electroruedas.ec@gmail.com'],mensajeFinal)
         success="Pronto nos comunicaremos contigo, Muchas gracias por elegir Electro Ruedas"
 
     contexto ={
