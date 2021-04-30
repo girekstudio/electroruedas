@@ -25,8 +25,8 @@ class ResizeImageMixin:
 
 def enviar_email(asunto, from_email, to, mensaje):
     text_content = 'This is an important message.'
-    html_content = '<p>This is an <strong>important</strong> message.</p>' \
-                   '<img src="http://girekstudio.com/static/img/girekstudio/favi%20girek-02.png"><br>' + mensaje
+    html_content = '<p>Este es un correo  <strong>important</strong> importante.</p>' \
+                   '<img src="http://electroruedas.girekstudio.com/media/favicon/logo-06_hBjMfIE.png"><br>' + mensaje
     msg = EmailMultiAlternatives(asunto, text_content, from_email, to)
     msg.attach_alternative(html_content, "text/html")
     msg.send()

@@ -73,7 +73,7 @@ def distribuidor(request):
         ciudad =request.POST.get('ciudad')
         mensaje= request.POST['mensaje']
 
-        mensajeFinal = "El usuario %s con email: %s y celular: %s, de la ciudad de %s quiere conmunicarse con usted y dejo el siguiente mensaje:  %s"%(
+        mensajeFinal = "El usuario %s con email: %s y celular: %s, de la ciudad de %s quiere comunicarse con usted y dejo el siguiente mensaje:  %s"%(
             nombre,email,celular,ciudad,mensaje
         )
         enviar_email('Mensaje desde el sitio web','electroruedas.ec@gmail.com',['electroruedas.ec@gmail.com'],mensajeFinal)
