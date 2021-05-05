@@ -11,12 +11,13 @@ def index(request):
     contexto ={
         'slider': Slider.objects.all(),
         'electro_galeia': Electroruedas_galeria.objects.all().first(),
-        'electro_ruedas':Electroruedas.objects.all().first(),
+        'electro_ruedas':Marca_Electroruedas.objects.all().first(),
         'clientes': Clientes.objects.all(),
         'empresa' : Empresa.objects.all().first(),
         'beneficios': Beneficios.objects.all(),
+        'articulo': Articulo_diario.objects.all().first(),
         'marcas': Marcas.objects.all(),
-        'tipo_product': Tipo_producto.objects.all().first(),
+        'tipo_product': Tipo_producto.objects.all(),
         'product': Tipo_producto.objects.all().first(),
         'contacto_electroruedas': Contacto_electroruedas.objects.all().first(),
         'contacto_redes': Contacto_redes.objects.all().first(),
@@ -27,7 +28,7 @@ def index(request):
 def empresa(request):
     contexto ={
         'electro_galeia': Electroruedas_galeria.objects.all().first(),
-        'electro_ruedas': Electroruedas.objects.all().first(),
+        'electro_ruedas': Marca_Electroruedas.objects.all().first(),
         'valor': Valor.objects.all(),
         'empresa': Empresa.objects.all().first(),
         'contacto_electroruedas': Contacto_electroruedas.objects.all().first(),
@@ -38,7 +39,7 @@ def empresa(request):
 def productos(request):
     contexto ={
         'slider': Slider.objects.all().first(),
-        'electro_ruedas':Electroruedas.objects.all().first(),
+        'electro_ruedas':Marca_Electroruedas.objects.all().first(),
         'empresa' : Empresa.objects.all().first(),
         'marcas': Marcas.objects.all().first(),
         'tipo_product': Tipo_producto.objects.all(),
@@ -49,11 +50,26 @@ def productos(request):
     }
     return render(request, 'shop-4-columns.html', contexto)
 
+
+def productos_tipo(request,id):
+    contexto ={
+        'electro_ruedas':Marca_Electroruedas.objects.all().first(),
+        'empresa' : Empresa.objects.all().first(),
+        'marcas': Marcas.objects.all().first(),
+        'tipo_product': Tipo_producto.objects.filter(titulo=id),
+        'product': Product.objects.filter(tipo_producto=id),
+        'contacto_electroruedas': Contacto_electroruedas.objects.all().first(),
+        'contacto_redes': Contacto_redes.objects.all().first(),
+
+    }
+    return render(request, 'shop-4-columns.html', contexto)
+
+
 def producto(request,id):
     produc=Product.objects.all()
     prod=produc.get(id=id)
     contexto ={
-        'electro_ruedas':Electroruedas.objects.all().first(),
+        'electro_ruedas':Marca_Electroruedas.objects.all().first(),
         'empresa' : Empresa.objects.all().first(),
         'marcas': Marcas.objects.all().first(),
         'tipo_product': Tipo_producto.objects.all(),
@@ -82,7 +98,7 @@ def distribuidor(request):
     contexto ={
         "mensaje":success,
         'electro_galeia': Electroruedas_galeria.objects.all().first(),
-        'electro_ruedas':Electroruedas.objects.all().first(),
+        'electro_ruedas':Marca_Electroruedas.objects.all().first(),
         'empresa' : Empresa.objects.all().first(),
         'contacto_electroruedas': Contacto_electroruedas.objects.all().first(),
         'contacto_redes': Contacto_redes.objects.all().first(),
@@ -91,7 +107,7 @@ def distribuidor(request):
 
 def contacto(request):
     contexto ={
-        'electro_ruedas':Electroruedas.objects.all().first(),
+        'electro_ruedas':Marca_Electroruedas.objects.all().first(),
         'empresa' : Empresa.objects.all().first(),
         'contacto_electroruedas': Contacto_electroruedas.objects.all().first(),
         'contacto_redes': Contacto_redes.objects.all().first(),

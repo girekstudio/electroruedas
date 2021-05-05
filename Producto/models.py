@@ -22,7 +22,7 @@ class Marcas(models.Model):
         verbose_name_plural = "1. Marcas "
 
 class Tipo_producto(models.Model):
-    icono = models.ImageField(upload_to='media', null=True, blank=True, help_text='360x360')
+    icono =models.CharField(max_length=50, null=True, blank=True)
     titulo=models.CharField(max_length=50, null=True, blank=True)
 
     def __str__(self):

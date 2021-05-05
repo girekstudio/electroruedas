@@ -26,6 +26,7 @@ urlpatterns = [
     path('', index),
     path('empresa/', empresa),
     path('productos/', productos),
+    path('productos/<int:id>', productos_tipo),
     path('producto/<int:id>/', producto),
     path('distribuidor/', distribuidor),
     path('contacto/', contacto),

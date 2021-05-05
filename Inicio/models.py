@@ -4,13 +4,9 @@ from django.db import models
 from django.utils.safestring import mark_safe
 
 
-class Electroruedas(models.Model):
-    favicon_blanco=models.ImageField(upload_to='favicon', help_text='imagenes 20*20')
+class Marca_Electroruedas(models.Model):
     favicon_color = models.ImageField(upload_to='favicon', help_text='imagenes 20*20')
     logo_horizontal = models.ImageField(upload_to='favicon',null=True, blank=True, help_text='imagenes 20*20')
-    logo_horizontal_blanco = models.ImageField(upload_to='favicon',null=True, blank=True, help_text='imagenes 20*20')
-    logo = models.ImageField(upload_to='favicon', help_text='imagenes 20*20')
-    logo_blanco= models.ImageField(upload_to='favicon', help_text='imagenes 20*20')
 
     def miniatura(self):
         return mark_safe("<img src='/media/%s' style='width: 100px'>"%self.logo_horizontal)
@@ -84,6 +80,19 @@ class Beneficios(models.Model):
     class Meta:
         verbose_name_plural = "6. Beneficios"
 
+
+class Articulo_diario(models.Model):
+    titulo = models.CharField(max_length=100, null=True, blank=True)
+    imagen = models.ImageField(upload_to='articulo', null=True, blank=True, help_text='imagenes 500*900')
+    parrafo_1 = models.TextField(max_length=1500, null=True, blank=True)
+    parrafo_2 = models.TextField(max_length=1500, null=True, blank=True)
+    link = models.CharField(max_length=800, null=True, blank=True)
+
+    def miniatura(self):
+        return mark_safe("<img src='/media/%s' style='width: 200px'>"%self.imagen)
+
+    class Meta:
+        verbose_name_plural = "5. Articulo Diario"
 
 
 class Contacto_electroruedas(models.Model):

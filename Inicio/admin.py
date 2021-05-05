@@ -5,10 +5,10 @@ from Inicio.models import *
 from electroruedas.snippers import Attr
 
 
-@admin.register(Electroruedas)
-class ElectroruedasAdmin(admin.ModelAdmin):
-    list_display = Attr(Electroruedas)+["miniatura"]
-    list_display_links = Attr(Electroruedas)
+@admin.register(Marca_Electroruedas)
+class Marca_ElectroruedasAdmin(admin.ModelAdmin):
+    list_display = Attr(Marca_Electroruedas)+["miniatura"]
+    list_display_links = Attr(Marca_Electroruedas)
 
 @admin.register(Slider)
 class SliderAdmin(admin.ModelAdmin):
@@ -36,6 +36,10 @@ class BeneficiosAdmin(admin.ModelAdmin):
     list_display = Attr(Beneficios)
     list_display_links = Attr(Beneficios)
 
+@admin.register(Articulo_diario)
+class Articulo_diarioAdmin(admin.ModelAdmin):
+    list_display = Attr(Articulo_diario)+["miniatura"]
+    list_display_links = Attr(Articulo_diario)
 
 @admin.register(Contacto_electroruedas)
 class Contacto_electroruedasAdmin(admin.ModelAdmin):
