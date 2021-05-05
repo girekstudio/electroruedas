@@ -35,6 +35,9 @@ class Electroruedas_galeria(models.Model):
     imagen_4=models.ImageField(upload_to='media', null=True, blank=True, help_text='imagenes 500*900')
     imagen_5=models.ImageField(upload_to='media', null=True, blank=True, help_text='imagenes 500*900')
     imagen_6 = models.ImageField(upload_to='media', null=True, blank=True, help_text='imagenes 500*900')
+    imagen_7 = models.ImageField(upload_to='media', null=True, blank=True, help_text='imagenes 500*900')
+    imagen_8 = models.ImageField(upload_to='media', null=True, blank=True, help_text='imagenes 500*900')
+    imagen_9 = models.ImageField(upload_to='media', null=True, blank=True, help_text='imagenes 500*900')
 
     def miniatura(self):
         return mark_safe("<img src='/media/%s' style='width: 200px'>"%self.imagen_1)
