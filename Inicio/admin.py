@@ -36,6 +36,11 @@ class BeneficiosAdmin(admin.ModelAdmin):
     list_display = Attr(Beneficios)
     list_display_links = Attr(Beneficios)
 
+@admin.register(Ventajas)
+class BeneficiosAdmin(admin.ModelAdmin):
+    list_display = Attr(Ventajas)
+    list_display_links = Attr(Ventajas)
+
 @admin.register(Articulo_diario)
 class Articulo_diarioAdmin(admin.ModelAdmin):
     list_display = Attr(Articulo_diario)+["miniatura"]

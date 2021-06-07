@@ -29,7 +29,11 @@ class Slider(models.Model):
         verbose_name_plural = "2. Slider"
 
 class Electroruedas_galeria(models.Model):
-    imagen_1=models.ImageField(upload_to='media', null=True, blank=True, help_text='imagenes 500*900')
+    imag_fondo_ventajas = models.ImageField(upload_to='electroruedas', null=True, blank=True, help_text='Inicio - Seccion Ventajas imagenes 300*900')
+    imag_empresa = models.ImageField(upload_to='electroruedas', null=True, blank=True, help_text='Empresa - Seccion Quienes somos imagenes 300*500')
+    imag_ventaja_01 = models.ImageField(upload_to='electroruedas', null=True, blank=True, help_text='Empresa - Seccion Ventaja 300*500')
+    imag_ventaja_02 = models.ImageField(upload_to='electroruedas', null=True, blank=True, help_text='Empresa - Seccion Ventaja 300*500')
+    imag_ventaja_03 = models.ImageField(upload_to='electroruedas', null=True, blank=True, help_text='Empresa - Seccion Ventaja 300*500')
     imagen_2=models.ImageField(upload_to='media', null=True, blank=True, help_text='imagenes 500*900')
     imagen_3=models.ImageField(upload_to='media', null=True, blank=True, help_text='imagenes 500*900')
     imagen_4=models.ImageField(upload_to='media', null=True, blank=True, help_text='imagenes 500*900')
@@ -38,6 +42,7 @@ class Electroruedas_galeria(models.Model):
     imagen_7 = models.ImageField(upload_to='media', null=True, blank=True, help_text='imagenes 500*900')
     imagen_8 = models.ImageField(upload_to='media', null=True, blank=True, help_text='imagenes 500*900')
     imagen_9 = models.ImageField(upload_to='media', null=True, blank=True, help_text='imagenes 500*900')
+
 
     def miniatura(self):
         return mark_safe("<img src='/media/%s' style='width: 200px'>"%self.imagen_1)
@@ -49,10 +54,10 @@ class Electroruedas_galeria(models.Model):
 class Empresa(models.Model):
     titulo = models.CharField(max_length=100, null=True, blank=True)
     nosotros = models.TextField(max_length=500, null=True, blank=True)
-    mision = models.TextField(max_length=500, null=True, blank=True)
-    vision = models.TextField(max_length=500, null=True, blank=True)
-    titulo_1 = models.TextField(max_length=500, null=True, blank=True)
-    sub_titulo_1 = models.TextField(max_length=500, null=True, blank=True)
+    quienes_somos = models.TextField(max_length=500, null=True, blank=True)
+    titulo_marcas = models.TextField(max_length=500, null=True, blank=True)
+    sub_titulo_marcas = models.TextField(max_length=500, null=True, blank=True)
+    titulo_ventajas = models.TextField(max_length=500, null=True, blank=True)
     titulo_2 = models.TextField(max_length=500, null=True, blank=True)
     sub_titulo_2 = models.TextField(max_length=500, null=True, blank=True)
     titulo_3 = models.TextField(max_length=500, null=True, blank=True)
@@ -75,13 +80,22 @@ class Valor(models.Model):
     class Meta:
         verbose_name_plural = "5. Valor"
 
+
 class Beneficios(models.Model):
+    titulo = models.CharField(max_length=100, null=True, blank=True)
+
+    class Meta:
+        verbose_name_plural = "6. Beneficios"
+
+
+
+class Ventajas(models.Model):
     titulo = models.CharField(max_length=100, null=True, blank=True)
     detalle = models.TextField(max_length=500, null=True, blank=True)
 
 
     class Meta:
-        verbose_name_plural = "6. Beneficios"
+        verbose_name_plural = "6. Ventajas"
 
 
 class Articulo_diario(models.Model):

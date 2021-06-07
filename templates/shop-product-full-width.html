@@ -1,379 +1,409 @@
 {% extends 'index-corporate.html' %}
- {% block metas %}
+{% block metas %}
     <meta property="og:url" content="http://electroruedas.girekstudio.com/producto/{{ produc.id }}"/>
     <meta property="og:type" content="website"/>
     <meta property="og:title" content="ElectroRuedas"/>
     <meta property="og:description" content="Vehículos eléctricos"/>
-     {% for imagen in produc.imagen_product_set.all%}
-         {% if forloop.counter <= 1 %}
-             <meta property="og:image" content="/media/{{ imagen.imagen }}"/>
-         {% endif %}
-     {% endfor %}
+    {% for imagen in produc.imagen_product_set.all %}
+        {% if forloop.counter <= 1 %}
+            <meta property="og:image" content="/media/{{ imagen.imagen }}"/>
+        {% endif %}
+    {% endfor %}
 
     <meta property="og:image:width" content="600"/>
     <meta property="og:image:height" content="600"/>
- {% endblock %}
+{% endblock %}
 
 
 {% block principal %}
 
-			<div role="main" class="main shop pt-4">
+    <div role="main" class="main shop pt-4">
 
-				<div class="container">
+        <div class="container">
 
-					<div class="row">
-						<div class="col">
-							<ul class="breadcrumb breadcrumb-style-2 d-block text-4 mb-4">
-								<li><a href="/" class="text-color-default text-color-hover-primary text-decoration-none">Inicio</a></li>
-								<li><a href="/productos/" class="text-color-default text-color-hover-primary text-decoration-none">Productos</a></li>
-								<li>{{ product.titulo }}</li>
-							</ul>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-5 mb-5 mb-md-0">
+            <div class="row">
+                <div class="col">
+                    <ul class="breadcrumb breadcrumb-style-2 d-block text-4 mb-4">
+                        <li><a href="/"
+                               class="text-color-default text-color-hover-primary text-decoration-none">Inicio</a></li>
+                        <li><a href="/productos/"
+                               class="text-color-default text-color-hover-primary text-decoration-none">Productos</a>
+                        </li>
+                        <li>{{ product.titulo }}</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5 mb-5 mb-md-0">
 
-							<div class="thumb-gallery-wrapper">
-								<div class="thumb-gallery-detail owl-carousel owl-theme manual nav-inside nav-style-1 nav-dark mb-3">
-                                    {% for imagen in product.imagen_product_set.all %}
-                                        <div>
-                                            <img alt="" class="img-fluid" src="/media/{{ imagen.imagen }}" data-zoom-image="/media/{{ imagen.imagen }}">
-                                        </div>
-                                    {% endfor %}
-                            	</div>
-								<div class="thumb-gallery-thumbs owl-carousel owl-theme manual thumb-gallery-thumbs">
+                    <div class="thumb-gallery-wrapper">
+                        <div class="thumb-gallery-detail owl-carousel owl-theme manual nav-inside nav-style-1 nav-dark mb-3">
+                            {% for imagen in product.imagen_product_set.all %}
+                                <div>
+                                    <img alt="" class="img-fluid" src="/media/{{ imagen.imagen }}"
+                                         data-zoom-image="/media/{{ imagen.imagen }}">
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <div class="thumb-gallery-thumbs owl-carousel owl-theme manual thumb-gallery-thumbs">
 
-                                    {% for imagen in product.imagen_product_set.all %}
-									<div class="cur-pointer">
-										<div class="img-fluid"style="background-color: {{ imagen.color }}">
-                                            <br>
-                                        </div>
-									</div>
-                                    {% endfor %}
-
-								</div>
-							</div>
-
-						</div>
-
-						<div class="col-md-7">
-
-							<div class="summary entry-summary position-relative">
-{##}
-{#								<div class="position-absolute top-0 right-0">#}
-{#									<div class="products-navigation d-flex">#}
-{#										<a href="#" class="prev text-decoration-none text-color-dark text-color-hover-primary border-color-hover-primary" data-tooltip data-original-title="Red Ladies Handbag"><i class="fas fa-chevron-left"></i></a>#}
-{#										<a href="#" class="next text-decoration-none text-color-dark text-color-hover-primary border-color-hover-primary" data-tooltip data-original-title="Green Ladies Handbag"><i class="fas fa-chevron-right"></i></a>#}
-{#									</div>#}
-{#								</div>#}
-
-								<h1 class="mb-0 font-weight-bold text-7">{{ product.titulo }}</h1>
-                                <p style="margin-top: -5px">{{ product.tipo_producto.titulo }}</p>
-
-								<div class="pb-0 clearfix d-flex align-items-center">
-									<div title="Rated 3 out of 5" class="float-left">
-										<input type="text" class="d-none" value="3" title="" data-plugin-star-rating data-plugin-options="{'displayOnly': true, 'color': 'primary', 'size':'xs'}">
-									</div>
-
-									<div class="review-num">
-										<a href="#description" class="text-decoration-none text-color-default text-color-hover-primary" data-hash data-hash-offset="75" data-hash-trigger-click=".nav-link-reviews" data-hash-trigger-click-delay="1000">
-											<span class="count text-color-inherit" itemprop="ratingCount">(10</span> reviews)
-										</a>
-									</div>
-								</div>
-
-								<div class="divider divider-small">
-									<hr class="bg-color-grey-scale-4">
-								</div>
-
-								<p class="price mb-3">
-                                    {% if product.offer %}
-                                        <span class="sale text-color-dark" style="text-decoration-color: #721c24"> ${{ product.precio }} &nbsp;&nbsp;</span>
-                                        <span class="amount">${{ product.precio_oferta }}</span>
-
-                                    {% else %}
-                                        <span class="sale text-color-dark">${{ product.precio }}</span>
-
-                                    {% endif %}
-
-
-								</p>
-
-								<p class="text-3-5 mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempus nibh sed elimttis adipiscing. Fusce in hendrerit purus. Lorem ipsum dolor sit amet.</p>
-
-								<ul class="list list-unstyled text-2">
-									<li class="mb-0">DISPONIBILIDAD:
-                                        {% if product.stock %}
-                                            <strong class="text-color-dark">Si</strong>
-                                        {% else %}
-                                            <strong class="text-color-danger">No</strong>
-                                        {% endif %}
-                                    </li>
-								</ul>
-
-								<div class="d-flex align-items-center">
-									<ul class="social-icons social-icons-medium social-icons-clean-with-border social-icons-clean-with-border-border-grey social-icons-clean-with-border-icon-dark mr-3 mb-0">
-										<!-- Facebook -->
-										<li class="social-icons-facebook">
-											<a href="http://www.facebook.com/sharer.php?u=https://www.electroruedas/girekstudio.com/productos/{{ product.id }}" target="_blank" data-toggle="tooltip" data-placement="top" title="{{ product.titulo}}">
-												<i class="fab fa-facebook-f"></i>
-											</a>
-										</li>
-
-                                        <!-- Whatsapp -->
-										<li class="social-icons-whatsapp">
-											<a href="whatsapp://send?text=https://www.electroruedas/girekstudio.com/productos/{{ product.id }}/" target="_blank" data-toggle="tooltip" data-placement="top" title="{{ product.titulo}}">
-												<i class="fab fa-whatsapp"></i>
-											</a>
-										</li>
-
-										<!-- Email -->
-										<li class="social-icons-email">
-											<a href="mailto:?Subject=Share This Page&amp;Body=Mira%20este%20producto!%20 https://www.electroruedas/girekstudio.com/productos/{{ product.id }}" data-toggle="tooltip" data-placement="top" title="{{ product.titulo}}">
-												<i class="far fa-envelope"></i>
-											</a>
-										</li>
-									</ul>
-                                    <br>
-								</div>
-                                <div style="text-align: center">
-                                    <div  type="button" class="mb-1 mt-1 mr-1 btn btn-primary">
-                                        <a href="https://api.whatsapp.com/send?phone=593{{ contacto_electroruedas.whatsapp }}&text=Hola%20Me%20interesa%20este%20producto  www.electroruedas/girekstudio.com/producto/{{ product.id }}/  "
-                                           target="_blank" rel="noopener">
-                                            <i style="color: #F9F9F9" class="fab fa-whatsapp fa-lg"></i>
-                                            <span style="color: #F9F9F9 ;text-align: center">&nbsp; &nbsp;Realiza tu pedido &nbsp; &nbsp;</span>
-                                        </a>
+                            {% for imagen in product.imagen_product_set.all %}
+                                <div class="cur-pointer">
+                                    <div class="img-fluid" style="background-color: {{ imagen.color }}">
+                                        <br>
                                     </div>
                                 </div>
-							</div>
+                            {% endfor %}
 
-						</div>
-					</div>
+                        </div>
+                    </div>
 
-					<div class="row mb-4">
-						<div class="col">
-							<div id="description" class="tabs tabs-simple tabs-simple-full-width-line tabs-product tabs-dark mb-2">
-								<ul class="nav nav-tabs justify-content-start">
-									<li class="nav-item active"><a class="nav-link active font-weight-bold text-3 text-uppercase py-2 px-3" href="#productDescription" data-toggle="tab">DESCRIPCIÓN</a></li>
-									<li class="nav-item"><a class="nav-link font-weight-bold text-3 text-uppercase py-2 px-3" href="#productInfo" data-toggle="tab">INFORMACIÓN TÉCNICA</a></li>
-								</ul>
-								<div class="tab-content p-0">
-									<div class="tab-pane px-0 py-3 active" id="productDescription">
-                                        <p>{{ product.descripcion }}</p>
-									</div>
-									<div class="tab-pane px-0 py-3" id="productInfo">
-										<table class="table table-striped m-0">
-											<tbody>
-                                                <tr>
-													<th class="border-top-0">
-														Tipo:
-													</th>
-													<td class="border-top-0">
-														{{ product.tipo_producto.titulo }}
-													</td>
-												</tr>
-												<tr>
-													<th class="border-top-0">
-														Marca:
-													</th>
-													<td class="border-top-0">
-														{{ product.marca }}
-													</td>
-												</tr>
-                                                <tr>
-													<th>
-														Motor
-													</th>
-													<td>
-														{{ product.motor }}
-													</td>
-												</tr>
-                                                <tr>
-													<th>
-														Batería
-													</th>
-													<td>
-														{{ product.bateria }}
-													</td>
-												</tr>
-                                                <tr>
-													<th>
-														Velocidad
-													</th>
-													<td>
-														{{ product.velocidad }}
-													</td>
-												</tr>
-												<tr>
-													<th>
-														Autonomía
-													</th>
-													<td>
-														{{ product.autonomia }}
-													</td>
-												</tr>
-                                                <tr>
-													<th>
-														Tiempo de Carga
-													</th>
-													<td>
-														{{ product.tiempo_carga }}
-													</td>
-												</tr>
-                                                <tr>
-													<th>
-														Carga Máxima
-													</th>
-													<td>
-														{{ product.carga_maxima }}
-													</td>
-												</tr>
-                                                <tr>
-													<th>
-														Colores
-													</th>
-													<td>
-														{% if product.blanco %}
-                                                        Blanco,
-                                                        {% else %}
-                                                        {% endif %}
+                </div>
 
-                                                        {% if product.gris %}
-                                                        Gris,
-                                                        {% else %}
-                                                        {% endif %}
+                <div class="col-md-7">
 
-                                                        {% if product.negro %}
-                                                        Negro,
-                                                        {% else %}
-                                                        {% endif %}
+                    <div class="summary entry-summary position-relative">
 
-                                                    {% if product.rojo %}
-                                                        Rojo,
-                                                        {% else %}
-                                                        {% endif %}
+                        <h1 class="mb-0 font-weight-bold text-7">{{ product.titulo }}</h1>
+                        <p style="margin-top: -5px">{{ product.tipo_producto.titulo }}</p>
 
-                                                    {% if product.amarillo %}
-                                                        Amarillo,
-                                                        {% else %}
-                                                        {% endif %}
+                        <div class="pb-0 clearfix d-flex align-items-center">
+                            <div title="Rated 3 out of 5" class="float-left">
+                                <input type="text" class="d-none" value="3" title="" data-plugin-star-rating
+                                       data-plugin-options="{'displayOnly': true, 'color': 'primary', 'size':'xs'}">
+                            </div>
 
-                                                    {% if product.azul %}
-                                                        Azul,
-                                                        {% else %}
-                                                        {% endif %}
+                            <div class="review-num">
+                                <a href="#description"
+                                   class="text-decoration-none text-color-default text-color-hover-primary" data-hash
+                                   data-hash-offset="75" data-hash-trigger-click=".nav-link-reviews"
+                                   data-hash-trigger-click-delay="1000">
+                                    <span class="count text-color-inherit" itemprop="ratingCount">(10</span> reviews)
+                                </a>
+                            </div>
+                        </div>
 
-                                                    {% if product.celeste %}
-                                                        Celeste,
-                                                        {% else %}
-                                                        {% endif %}
+                        <div class="divider divider-small">
+                            <hr class="bg-color-grey-scale-4">
+                        </div>
 
-                                                    {% if product.verde %}
-                                                        Verde,
-                                                        {% else %}
-                                                        {% endif %}
+                        <p class="price mb-3">
+                            {% if product.offer %}
+                                <span class="sale text-color-dark"
+                                      style="text-decoration-color: #721c24"> ${{ product.precio }} &nbsp;&nbsp;</span>
+                                <span class="amount">${{ product.precio_oferta }}</span>
 
-                                                    {% if product.turquesa %}
-                                                        Turquesa,
-                                                        {% else %}
-                                                        {% endif %}
+                            {% else %}
+                                <span class="sale text-color-dark">${{ product.precio }}</span>
 
-                                                    {% if product.violeta %}
-                                                        Violeta,
-                                                        {% else %}
-                                                        {% endif %}
+                            {% endif %}
 
-                                                    {% if product.cafe %}
-                                                        Cafe.
-                                                        {% else %}
-                                                        {% endif %}
 
-													</td>
-												</tr>
+                        </p>
 
-											</tbody>
-										</table>
-									</div>
+                        <p class="text-3-5 mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempus
+                            nibh sed elimttis adipiscing. Fusce in hendrerit purus. Lorem ipsum dolor sit amet.</p>
 
-								</div>
-							</div>
-						</div>
-					</div>
+                        <ul class="list list-unstyled text-2">
+                            <li class="mb-0">DISPONIBILIDAD:
+                                {% if product.stock %}
+                                    <strong class="text-color-dark">Si</strong>
+                                {% else %}
+                                    <strong class="text-color-danger">No</strong>
+                                {% endif %}
+                            </li>
+                        </ul>
 
-					<div class="row">
-						<div class="col">
-							<h4 class="font-weight-semibold text-4 mb-3">PRODUCTOS RELACIONADOS</h4>
-							<hr class="mt-0">
-							<div class="products row">
-								<div class="col">
-									<div class="owl-carousel owl-theme nav-style-1 nav-outside nav-outside nav-dark mb-0" data-plugin-options="{'loop': false, 'autoplay': false, 'items': 4, 'nav': true, 'dots': false, 'margin': 20, 'autoplayHoverPause': true, 'autoHeight': true, 'stagePadding': '75', 'navVerticalOffset': '50px'}">
+                        <div class="d-flex align-items-center">
+                            <ul class="social-icons social-icons-medium social-icons-clean-with-border social-icons-clean-with-border-border-grey social-icons-clean-with-border-icon-dark mr-3 mb-0">
+                                <!-- Facebook -->
+                                <li class="social-icons-facebook">
+                                    <a href="http://www.facebook.com/sharer.php?u=https://www.electroruedas/girekstudio.com/productos/{{ product.id }}"
+                                       target="_blank" data-toggle="tooltip" data-placement="top"
+                                       title="{{ product.titulo }}">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </a>
+                                </li>
 
-										{% for produ in productos %}
+                                <!-- Whatsapp -->
+                                <li class="social-icons-whatsapp">
+                                    <a href="whatsapp://send?text=https://www.electroruedas/girekstudio.com/productos/{{ product.id }}/"
+                                       target="_blank" data-toggle="tooltip" data-placement="top"
+                                       title="{{ product.titulo }}">
+                                        <i class="fab fa-whatsapp"></i>
+                                    </a>
+                                </li>
 
-                                            <div class="product mb-0">
-                                                <div class="product-thumb-info border-0 mb-3">
+                                <!-- Email -->
+                                <li class="social-icons-email">
+                                    <a href="mailto:?Subject=Share This Page&amp;Body=Mira%20este%20producto!%20 https://www.electroruedas/girekstudio.com/productos/{{ product.id }}"
+                                       data-toggle="tooltip" data-placement="top" title="{{ product.titulo }}">
+                                        <i class="far fa-envelope"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                            <br>
+                        </div>
+                        <div style="text-align: center">
+                            <div type="button" class="mb-1 mt-1 mr-1 btn btn-primary">
+                                <a href="https://api.whatsapp.com/send?phone=593{{ contacto_electroruedas.whatsapp }}&text=Hola%20Me%20interesa%20este%20producto  www.electroruedas/girekstudio.com/producto/{{ product.id }}/  "
+                                   target="_blank" rel="noopener">
+                                    <i style="color: #F9F9F9" class="fab fa-whatsapp fa-lg"></i>
+                                    <span style="color: #F9F9F9 ;text-align: center">&nbsp; &nbsp;Realiza tu pedido &nbsp; &nbsp;</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
 
-                                                    <div class="product-thumb-info-badges-wrapper">
-                                                         {% if produ.new %}
-                                                            <span class="badge badge-ecommerce badge-success">NUEVO</span>
-                                                                {% else %}
-                                                                {% endif %}
+                </div>
+            </div>
 
-                                                                {% if produ.offer %}
-                                                                <span class="badge badge-ecommerce badge-danger">PROMO</span>
-                                                                {% else %}
-                                                        {% endif %}
-                                                    </div>
+            <div class="row mb-4">
+                <div class="col">
+                    <div id="description"
+                         class="tabs tabs-simple tabs-simple-full-width-line tabs-product tabs-dark mb-2">
+                        <ul class="nav nav-tabs justify-content-start">
+                            <li class="nav-item active"><a
+                                    class="nav-link active font-weight-bold text-3 text-uppercase py-2 px-3"
+                                    href="#productDescription" data-toggle="tab">DESCRIPCIÓN</a></li>
+                            <li class="nav-item"><a class="nav-link font-weight-bold text-3 text-uppercase py-2 px-3"
+                                                    href="#productInfo" data-toggle="tab">GALERÍA</a></li>
+                        </ul>
+                        <div class="tab-content p-0">
+                            <div class="tab-pane px-0 py-3 active" id="productDescription">
+                                <p>{{ product.descripcion }}</p>
+                            </div>
+                            <div class="tab-pane px-0 py-3" id="productInfo">
 
-                                                    <div class="addtocart-btn-wrapper">
-                                                        <a href="/producto/{{ produ.id }}" class="text-decoration-none addtocart-btn" data-tooltip data-original-title="Add to Cart">
-                                                            <i class="icons icon-bag"></i>
-                                                        </a>
-                                                    </div>
+                            </div>
 
-                                                    <a href="" class="quick-view text-uppercase font-weight-semibold text-2">
-                                                        QUICK VIEW
-                                                    </a>
-                                                    <a href="/producto/{{ produ.id }}">
-                                                        <div class="product-thumb-info-image product-thumb-info-image-effect">
-                                                            {% for imagen in produ.imagen_product_set.all %}
-                                                                {% if forloop.counter <= 2 %}
-                                                                <img alt="" class="img-fluid" src="/media/{{ imagen.imagen}}">
-                                                                {% endif %}
-                                                            {% endfor %}
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                                <div class="d-flex justify-content-between">
-                                                    <div>
-                                                        <a href="#" class="d-block text-uppercase text-decoration-none text-color-default text-color-hover-primary line-height-1 text-0 mb-1">{{ produ.tipo_producto.titulo }}</a>
-                                                        <h3 class="text-3-5 font-weight-medium font-alternative text-transform-none line-height-3 mb-0"><a href="/producto/{{ produ.id }}" class="text-color-dark text-color-hover-primary">{{ produc.tipo_producto}}</a></h3>
-                                                    </div>
-                                                    <a href="#" class="text-decoration-none text-color-default text-color-hover-dark text-4"><i class="far fa-heart"></i></a>
-                                                </div>
-                                                <div title="Rated 5 out of 5">
-                                                    <input type="text" class="d-none" value="5" title="" data-plugin-star-rating data-plugin-options="{'displayOnly': true, 'color': 'default', 'size':'xs'}">
-                                                </div>
-                                                <p class="price text-5 mb-3">
-                                                    {% if produ.offer %}
-                                                        <span class="sale text-color-dark font-weight-semi-bold" style="text-decoration-color: #721c24"> ${{ produ.precio }} &nbsp;&nbsp;</span>
-                                                        <span class="amount">${{ produ.precio_oferta }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                                                    {% else %}
-                                                        <span class="sale text-color-dark">${{ produ.precio }}</span>
+            <div class="tab-pane px-0 py-3">
+                <table class="table table-striped m-0">
+                    <tbody>
+                    <tr>
+                        <th class="border-top-0">
+                            Tipo:
+                        </th>
+                        <td class="border-top-0">
+                            {{ product.tipo_producto.titulo }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="border-top-0">
+                            Marca:
+                        </th>
+                        <td class="border-top-0">
+                            {{ product.marca }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            Motor
+                        </th>
+                        <td>
+                            {{ product.motor }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            Batería
+                        </th>
+                        <td>
+                            {{ product.bateria }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            Velocidad
+                        </th>
+                        <td>
+                            {{ product.velocidad }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            Autonomía
+                        </th>
+                        <td>
+                            {{ product.autonomia }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            Tiempo de Carga
+                        </th>
+                        <td>
+                            {{ product.tiempo_carga }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            Carga Máxima
+                        </th>
+                        <td>
+                            {{ product.carga_maxima }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            Colores
+                        </th>
+                        <td>
+                            {% if product.blanco %}
+                                Blanco,
+                            {% else %}
+                            {% endif %}
 
-                                                    {% endif %}
-                                                </p>
+                            {% if product.gris %}
+                                Gris,
+                            {% else %}
+                            {% endif %}
+
+                            {% if product.negro %}
+                                Negro,
+                            {% else %}
+                            {% endif %}
+
+                            {% if product.rojo %}
+                                Rojo,
+                            {% else %}
+                            {% endif %}
+
+                            {% if product.amarillo %}
+                                Amarillo,
+                            {% else %}
+                            {% endif %}
+
+                            {% if product.azul %}
+                                Azul,
+                            {% else %}
+                            {% endif %}
+
+                            {% if product.celeste %}
+                                Celeste,
+                            {% else %}
+                            {% endif %}
+
+                            {% if product.verde %}
+                                Verde,
+                            {% else %}
+                            {% endif %}
+
+                            {% if product.turquesa %}
+                                Turquesa,
+                            {% else %}
+                            {% endif %}
+
+                            {% if product.violeta %}
+                                Violeta,
+                            {% else %}
+                            {% endif %}
+
+                            {% if product.cafe %}
+                                Cafe.
+                            {% else %}
+                            {% endif %}
+
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <br><br><br>
+
+
+            <div class="row">
+                <div class="col">
+                    <h4 class="font-weight-semibold text-4 mb-3">PRODUCTOS RELACIONADOS</h4>
+                    <hr class="mt-0">
+                    <div class="products row">
+                        <div class="col">
+                            <div class="owl-carousel owl-theme nav-style-1 nav-outside nav-outside nav-dark mb-0"
+                                 data-plugin-options="{'loop': false, 'autoplay': false, 'items': 4, 'nav': true, 'dots': false, 'margin': 20, 'autoplayHoverPause': true, 'autoHeight': true, 'stagePadding': '75', 'navVerticalOffset': '50px'}">
+
+                                {% for produ in productos %}
+
+                                    <div class="product mb-0">
+                                        <div class="product-thumb-info border-0 mb-3">
+
+                                            <div class="product-thumb-info-badges-wrapper">
+                                                {% if produ.new %}
+                                                    <span class="badge badge-ecommerce badge-success">NUEVO</span>
+                                                {% else %}
+                                                {% endif %}
+
+                                                {% if produ.offer %}
+                                                    <span class="badge badge-ecommerce badge-danger">PROMO</span>
+                                                {% else %}
+                                                {% endif %}
                                             </div>
-                                        {% endfor %}
 
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+                                            <div class="addtocart-btn-wrapper">
+                                                <a href="/producto/{{ produ.id }}"
+                                                   class="text-decoration-none addtocart-btn" data-tooltip
+                                                   data-original-title="Add to Cart">
+                                                    <i class="icons icon-bag"></i>
+                                                </a>
+                                            </div>
 
-				</div>
+                                            <a href="" class="quick-view text-uppercase font-weight-semibold text-2">
+                                                QUICK VIEW
+                                            </a>
+                                            <a href="/producto/{{ produ.id }}">
+                                                <div class="product-thumb-info-image product-thumb-info-image-effect">
+                                                    {% for imagen in produ.imagen_product_set.all %}
+                                                        {% if forloop.counter <= 2 %}
+                                                            <img alt="" class="img-fluid"
+                                                                 src="/media/{{ imagen.imagen }}">
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <div>
+                                                <a href="#"
+                                                   class="d-block text-uppercase text-decoration-none text-color-default text-color-hover-primary line-height-1 text-0 mb-1">{{ produ.tipo_producto.titulo }}</a>
+                                                <h3 class="text-3-5 font-weight-medium font-alternative text-transform-none line-height-3 mb-0">
+                                                    <a href="/producto/{{ produ.id }}"
+                                                       class="text-color-dark text-color-hover-primary">{{ produc.tipo_producto }}</a>
+                                                </h3>
+                                            </div>
+                                            <a href="#"
+                                               class="text-decoration-none text-color-default text-color-hover-dark text-4"><i
+                                                    class="far fa-heart"></i></a>
+                                        </div>
+                                        <div title="Rated 5 out of 5">
+                                            <input type="text" class="d-none" value="5" title="" data-plugin-star-rating
+                                                   data-plugin-options="{'displayOnly': true, 'color': 'default', 'size':'xs'}">
+                                        </div>
+                                        <p class="price text-5 mb-3">
+                                            {% if produ.offer %}
+                                                <span class="sale text-color-dark font-weight-semi-bold"
+                                                      style="text-decoration-color: #721c24"> ${{ produ.precio }} &nbsp;&nbsp;</span>
+                                                <span class="amount">${{ produ.precio_oferta }}</span>
 
-			</div>
+                                            {% else %}
+                                                <span class="sale text-color-dark">${{ produ.precio }}</span>
+
+                                            {% endif %}
+                                        </p>
+                                    </div>
+                                {% endfor %}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
 {% endblock %}
