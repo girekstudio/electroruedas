@@ -45,7 +45,7 @@ class Electroruedas_galeria(models.Model):
 
 
     def miniatura(self):
-        return mark_safe("<img src='/media/%s' style='width: 200px'>"%self.imagen_1)
+        return mark_safe("<img src='/media/%s' style='width: 200px'>"%self.imag_empresa)
 
 
     class Meta:
