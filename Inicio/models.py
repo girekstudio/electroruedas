@@ -3,6 +3,14 @@ from django.db import models
 # Create your models here.
 from django.utils.safestring import mark_safe
 
+class Envio_Email(models.Model):
+    servidor_smtp=models.CharField(max_length=100)
+    puerto=models.IntegerField()
+    email=models.EmailField(max_length=200)
+    password=models.CharField(max_length=100)
+    copia=models.EmailField(max_length=200)
+    mensaje_personalizado = models.TextField(default="Gracias por elegir xurimotos")
+
 
 class Marca_Electroruedas(models.Model):
     favicon_color = models.ImageField(upload_to='favicon', help_text='imagenes 20*20')

@@ -3,7 +3,12 @@ from PIL import Image
 from io import BytesIO
 from django.core.files import File
 from django.core.files.base import ContentFile
-from django.core.mail import EmailMultiAlternatives
+
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+
+from Inicio.models import Envio_Email
 
 
 def Attr(cls):
@@ -23,11 +28,18 @@ class ResizeImageMixin:
         random_name = f'{uuid.uuid4()}.jpeg'
         imageField.save(random_name, file, save=False)
 
-def enviar_email(asunto, from_email, to, mensaje):
-    text_content = 'This is an important message.'
-    html_content = '<p>Este es un correo  <strong>important</strong> importante.</p>' \
-                   '<img src="http://electroruedas.girekstudio.com/media/favicon/logo-06.png"><br>' + mensaje
-    msg = EmailMultiAlternatives(asunto, text_content, from_email, to)
-    msg.attach_alternative(html_content, "text/html")
-    msg.send()
-    # print from_email
+
+def enviar_email(destinatarios:list,asunto,mensaje_texto):
+    datos_email = Envio_Email.objects.last()
+    destinatarios.append(datos_email.copia)
+    mensaje = MIMEMultipart()
+    mensaje['From'] = datos_email.email
+    mensaje['To'] = ", ".join(destinatarios)
+    mensaje['Subject'] = asunto
+    mensaje.attach(MIMEText(mensaje_texto, 'plain'))
+    sesion_smtp = smtplib.SMTP(datos_email.servidor_smtp, datos_email.puerto)
+    sesion_smtp.starttls()
+    sesion_smtp.login(datos_email.email, datos_email.password)
+    texto = mensaje.as_string()
+    sesion_smtp.sendmail(datos_email.email, destinatarios, texto)
+    sesion_smtp.quit()

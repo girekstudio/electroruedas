@@ -55,3 +55,8 @@ class Contacto_electroruedasAdmin(admin.ModelAdmin):
 class Contacto_redesAdmin(admin.ModelAdmin):
     list_display = Attr(Contacto_redes)
     list_display_links = Attr(Contacto_redes)
+
+@admin.register(Envio_Email)
+class Envio_EmailsAdmin(admin.ModelAdmin):
+    list_display = Attr(Envio_Email)
+    list_display_links = Attr(Envio_Email)

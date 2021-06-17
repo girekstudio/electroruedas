@@ -87,15 +87,16 @@ def distribuidor(request):
     success=""
     if request.POST:
         nombre=request.POST.get('nombre')
+        cedula = request.POST.get('cedula')
         email =request.POST.get('email')
         celular=request.POST.get('celular')
         ciudad =request.POST.get('ciudad')
-        mensaje= request.POST['mensaje']
+        mensaje= request.POST.get('mensaje')
 
-        mensajeFinal = "El usuario %s con email: %s y celular: %s, de la ciudad de %s quiere comunicarse con usted y dejo el siguiente mensaje:  %s"%(
-            nombre,email,celular,ciudad,mensaje
+        mensajeFinal = "Un usuario se trata de comunicar con usted.\nNombre: %s  \nCédula:%s \nEmail: %s \ncelular: %s, de la ciudad de %s quiere comunicarse con usted y dejo el siguiente mensaje:  %s"%(
+            nombre,cedula,email,celular,ciudad,mensaje
         )
-        enviar_email('Mensaje desde el sitio web','electroruedas.ec@gmail.com',['electroruedas.ec@gmail.com'],mensajeFinal)
+        enviar_email(['electroruedas.ec@gmail.com'],'Mensaje del Sitio Web',mensajeFinal)
         success="Pronto nos comunicaremos contigo, Muchas gracias por elegir Electro Ruedas"
 
     contexto ={
