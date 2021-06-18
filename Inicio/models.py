@@ -41,15 +41,8 @@ class Electroruedas_galeria(models.Model):
     imag_empresa = models.ImageField(upload_to='electroruedas', null=True, blank=True, help_text='Empresa - Seccion Quienes somos imagenes 300*500')
     imag_ventaja_01 = models.ImageField(upload_to='electroruedas', null=True, blank=True, help_text='Empresa - Seccion Ventaja 300*500')
     imag_ventaja_02 = models.ImageField(upload_to='electroruedas', null=True, blank=True, help_text='Empresa - Seccion Ventaja 300*500')
-    imag_ventaja_03 = models.ImageField(upload_to='electroruedas', null=True, blank=True, help_text='Empresa - Seccion Ventaja 300*500')
-    imagen_2=models.ImageField(upload_to='media', null=True, blank=True, help_text='imagenes 500*900')
-    imagen_3=models.ImageField(upload_to='media', null=True, blank=True, help_text='imagenes 500*900')
-    imagen_4=models.ImageField(upload_to='media', null=True, blank=True, help_text='imagenes 500*900')
-    imagen_5=models.ImageField(upload_to='media', null=True, blank=True, help_text='imagenes 500*900')
-    imagen_6 = models.ImageField(upload_to='media', null=True, blank=True, help_text='imagenes 500*900')
-    imagen_7 = models.ImageField(upload_to='media', null=True, blank=True, help_text='imagenes 500*900')
-    imagen_8 = models.ImageField(upload_to='media', null=True, blank=True, help_text='imagenes 500*900')
-    imagen_9 = models.ImageField(upload_to='media', null=True, blank=True, help_text='imagenes 500*900')
+    imagen_distribuidor=models.ImageField(upload_to='electroruedas', null=True, blank=True, help_text='Quieres ser distribuidor -  500*500')
+
 
 
     def miniatura(self):
@@ -134,6 +127,20 @@ class Contacto_electroruedas(models.Model):
 
     class Meta:
         verbose_name_plural = "7. Contacto ElecctroRuedas"
+
+class Promo(models.Model):
+    activo = models.BooleanField(default=False)
+    titulo = models.CharField(max_length=100, null=True, blank=True)
+    imagen = models.ImageField(upload_to='promo', null=True, blank=True, help_text='500x800')
+
+
+    def miniatura(self):
+        return mark_safe("<img src='/media/%s' style='width: 100px'>" % self.imagen)
+
+
+
+    class Meta:
+        verbose_name_plural = "8. Promo "
 
 
 

@@ -50,6 +50,11 @@ class Product(models.Model):
     bateria = models.CharField(max_length=50, null=True, blank=True)
     tiempo_carga  = models.CharField(max_length=50, null=True, blank=True)
     carga_maxima = models.CharField(max_length=50, null=True, blank=True)
+    dimensiones = models.CharField(max_length=100, null=True, blank=True)
+    distancia_ejes = models.CharField(max_length=100, null=True, blank=True)
+    controlador = models.CharField(max_length=100, null=True, blank=True)
+    frenos = models.CharField(max_length=100, null=True, blank=True)
+    dimensiones_rueda = models.CharField(max_length=100, null=True, blank=True)
     descripcion = models.TextField(max_length=500, null=True, blank=True)
     precio = models.DecimalField(max_digits=999, decimal_places=2)
     precio_oferta = models.DecimalField(max_digits=999, decimal_places=2, null=True, blank=True)
@@ -79,3 +84,17 @@ class Imagen_product(models.Model, ResizeImageMixin):
         storage, path = self.imagen.storage, self.imagen.path
         super(Imagen_product, self).delete()
         storage.delete(path)
+
+    class Meta:
+        verbose_name_plural = "4. Imagenes de Producto "
+
+
+class Galeria_product(models.Model):
+    producto=models.ForeignKey(Product, on_delete=models.CASCADE,)
+    imagen= models.ImageField(upload_to='producto', null=True, blank=True, help_text='360x360')
+
+
+    class Meta:
+        verbose_name_plural = "4. Galerìa de Producto "
+
+

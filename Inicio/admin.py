@@ -60,3 +60,8 @@ class Contacto_redesAdmin(admin.ModelAdmin):
 class Envio_EmailsAdmin(admin.ModelAdmin):
     list_display = Attr(Envio_Email)
     list_display_links = Attr(Envio_Email)
+
+@admin.register(Promo)
+class PromoAdmin(admin.ModelAdmin):
+    list_display = Attr(Promo)
+    list_display_links = Attr(Promo)

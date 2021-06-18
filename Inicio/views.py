@@ -36,6 +36,7 @@ def empresa(request):
         'empresa': Empresa.objects.all().first(),
         'contacto_electroruedas': Contacto_electroruedas.objects.all().first(),
         'contacto_redes': Contacto_redes.objects.all().first(),
+
     }
     return render(request, 'about-me.html', contexto)
 
@@ -49,6 +50,9 @@ def productos(request):
         'product': Product.objects.all(),
         'contacto_electroruedas': Contacto_electroruedas.objects.all().first(),
         'contacto_redes': Contacto_redes.objects.all().first(),
+        'promo': Promo.objects.all(),
+        'galeria_producto': Galeria_product.objects.all(),
+
 
     }
     return render(request, 'shop-4-columns.html', contexto)

@@ -101,8 +101,7 @@
 
                         </p>
 
-                        <p class="text-3-5 mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempus
-                            nibh sed elimttis adipiscing. Fusce in hendrerit purus. Lorem ipsum dolor sit amet.</p>
+                        <p class="text-3-5 mb-3">{{ product.descripcion }}</p>
 
                         <ul class="list list-unstyled text-2">
                             <li class="mb-0">DISPONIBILIDAD:
@@ -175,8 +174,20 @@
                             </div>
                             <div class="tab-pane px-0 py-3" id="productInfo">
 
-                            </div>
+                                <div class="content-grid mt-4 mb-4">
+										<div class="row content-grid-row">
+											<div class="content-grid-item col-lg-3 text-center">
+												<div class="p-4">
+													<img class="img-fluid" src="img/logos/logo-1.png" alt="">
+												</div>
+											</div>
 
+										</div>
+                                    </div>
+
+
+
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -185,15 +196,20 @@
             <div class="tab-pane px-0 py-3">
                 <table class="table table-striped m-0">
                     <tbody>
-                    <tr>
-                        <th class="border-top-0">
-                            Tipo:
-                        </th>
-                        <td class="border-top-0">
-                            {{ product.tipo_producto.titulo }}
-                        </td>
-                    </tr>
-                    <tr>
+                    {% if product.tipo_producto.titulo %}
+                        <tr>
+                            <th class="border-top-0">
+                                Tipo:
+                            </th>
+                            <td class="border-top-0">
+                                {{ product.tipo_producto.titulo }}
+                            </td>
+                        </tr>
+                    {% else %}
+                    {% endif %}
+
+                    {% if product.marca %}
+                     <tr>
                         <th class="border-top-0">
                             Marca:
                         </th>
@@ -201,7 +217,71 @@
                             {{ product.marca }}
                         </td>
                     </tr>
-                    <tr>
+                    {% else %}
+                    {% endif %}
+
+                    {% if product.dimensiones %}
+                     <tr>
+                        <th class="border-top-0">
+                            Dimensiones:
+                        </th>
+                        <td class="border-top-0">
+                            {{ product.dimensiones }}
+                        </td>
+                    </tr>
+                    {% else %}
+                    {% endif %}
+
+                    {% if product.distancia_ejes %}
+                     <tr>
+                        <th class="border-top-0">
+                            Distancia entre ejes:
+                        </th>
+                        <td class="border-top-0">
+                            {{ product.distancia_ejes }}
+                        </td>
+                    </tr>
+                    {% else %}
+                    {% endif %}
+
+                    {% if product.controlador %}
+                     <tr>
+                        <th class="border-top-0">
+                            Controlador:
+                        </th>
+                        <td class="border-top-0">
+                            {{ product.controlador }}
+                        </td>
+                    </tr>
+                    {% else %}
+                    {% endif %}
+
+                    {% if product.frenos %}
+                     <tr>
+                        <th class="border-top-0">
+                            Frenos:
+                        </th>
+                        <td class="border-top-0">
+                            {{ product.frenos }}
+                        </td>
+                    </tr>
+                    {% else %}
+                    {% endif %}
+
+                    {% if product.dimensiones_rueda %}
+                     <tr>
+                        <th class="border-top-0">
+                            Dimensiones de rueda:
+                        </th>
+                        <td class="border-top-0">
+                            {{ product.dimensiones_rueda }}
+                        </td>
+                    </tr>
+                    {% else %}
+                    {% endif %}
+
+                    {% if product.motor %}
+                     <tr>
                         <th>
                             Motor
                         </th>
@@ -209,15 +289,23 @@
                             {{ product.motor }}
                         </td>
                     </tr>
-                    <tr>
+                    {% else %}
+                    {% endif %}
+
+                    {% if product.bateria %}
+                     <tr>
                         <th>
                             Batería
                         </th>
                         <td>
-                            {{ product.bateria }}
+                            {{ product.bateria}}
                         </td>
                     </tr>
-                    <tr>
+                    {% else %}
+                    {% endif %}
+
+                    {% if product.velocidad %}
+                     <tr>
                         <th>
                             Velocidad
                         </th>
@@ -225,7 +313,11 @@
                             {{ product.velocidad }}
                         </td>
                     </tr>
-                    <tr>
+                    {% else %}
+                    {% endif %}
+
+                    {% if product.autonomia %}
+                     <tr>
                         <th>
                             Autonomía
                         </th>
@@ -233,7 +325,11 @@
                             {{ product.autonomia }}
                         </td>
                     </tr>
-                    <tr>
+                    {% else %}
+                    {% endif %}
+
+                    {% if product.tiempo_carga %}
+                     <tr>
                         <th>
                             Tiempo de Carga
                         </th>
@@ -241,7 +337,11 @@
                             {{ product.tiempo_carga }}
                         </td>
                     </tr>
-                    <tr>
+                    {% else %}
+                    {% endif %}
+
+                    {% if product.carga_maxima %}
+                     <tr>
                         <th>
                             Carga Máxima
                         </th>
@@ -249,66 +349,25 @@
                             {{ product.carga_maxima }}
                         </td>
                     </tr>
-                    <tr>
+                    {% else %}
+                    {% endif %}
+
+                     <tr>
                         <th>
-                            Colores
+                            Color
                         </th>
                         <td>
-                            {% if product.blanco %}
-                                Blanco,
-                            {% else %}
-                            {% endif %}
+                            <div class="thumb-gallery-thumbs manual thumb-gallery-thumbs">
 
-                            {% if product.gris %}
-                                Gris,
-                            {% else %}
-                            {% endif %}
+                            {% for imagen in product.imagen_product_set.all %}
+                                <div class="cur-pointer">
+                                    <div  class="img-fluid" style="background-color: {{ imagen.color }}; width: 100px" >
+                                        <br>
+                                    </div>
+                                </div>
+                            {% endfor %}
 
-                            {% if product.negro %}
-                                Negro,
-                            {% else %}
-                            {% endif %}
-
-                            {% if product.rojo %}
-                                Rojo,
-                            {% else %}
-                            {% endif %}
-
-                            {% if product.amarillo %}
-                                Amarillo,
-                            {% else %}
-                            {% endif %}
-
-                            {% if product.azul %}
-                                Azul,
-                            {% else %}
-                            {% endif %}
-
-                            {% if product.celeste %}
-                                Celeste,
-                            {% else %}
-                            {% endif %}
-
-                            {% if product.verde %}
-                                Verde,
-                            {% else %}
-                            {% endif %}
-
-                            {% if product.turquesa %}
-                                Turquesa,
-                            {% else %}
-                            {% endif %}
-
-                            {% if product.violeta %}
-                                Violeta,
-                            {% else %}
-                            {% endif %}
-
-                            {% if product.cafe %}
-                                Cafe.
-                            {% else %}
-                            {% endif %}
-
+                        </div>
                         </td>
                     </tr>
 
