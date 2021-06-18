@@ -28,3 +28,10 @@ class Imagen_productAdmin(admin.ModelAdmin):
     list_display_links = Attr(Imagen_product)
 
 
+@admin.register(Galeria_product)
+class Galeria_productAdmin(admin.ModelAdmin):
+    list_display = Attr(Galeria_product)
+    list_display_links = Attr(Galeria_product)
+
+
+

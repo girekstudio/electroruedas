@@ -95,6 +95,6 @@ class Galeria_product(models.Model):
 
 
     class Meta:
-        verbose_name_plural = "4. Galerìa de Producto "
+        verbose_name_plural = "5. Galerìa de Producto "
 
 

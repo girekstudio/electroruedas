@@ -51,7 +51,7 @@ def productos(request):
         'contacto_electroruedas': Contacto_electroruedas.objects.all().first(),
         'contacto_redes': Contacto_redes.objects.all().first(),
         'promo': Promo.objects.all(),
-        'galeria_producto': Galeria_product.objects.all(),
+
 
 
     }
@@ -84,6 +84,7 @@ def producto(request,id):
         'productos': produc.filter(tipo_producto=prod.tipo_producto),
         'contacto_electroruedas': Contacto_electroruedas.objects.all().first(),
         'contacto_redes': Contacto_redes.objects.all().first(),
+        'galeria_producto': Galeria_product.objects.all(),
     }
     return render(request, 'shop-product-full-width.html', contexto)
 
