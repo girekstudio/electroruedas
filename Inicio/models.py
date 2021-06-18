@@ -13,8 +13,9 @@ class Envio_Email(models.Model):
 
 
 class Marca_Electroruedas(models.Model):
-    favicon_color = models.ImageField(upload_to='favicon', help_text='imagenes 20*20')
-    logo_horizontal = models.ImageField(upload_to='favicon',null=True, blank=True, help_text='imagenes 20*20')
+    favicon_color = models.ImageField(upload_to='favicon', help_text='Favicon 20*20')
+    logo_horizontal = models.ImageField(upload_to='favicon',null=True, blank=True, help_text='Logotipo a color 50*200')
+    logo_horizontal_2 = models.ImageField(upload_to='favicon', null=True, blank=True, help_text='Logotipo un color 20*20')
 
     def miniatura(self):
         return mark_safe("<img src='/media/%s' style='width: 100px'>"%self.logo_horizontal)
@@ -27,7 +28,7 @@ class Marca_Electroruedas(models.Model):
 class Slider(models.Model):
     titulo = models.CharField(max_length=100, null=True, blank=True)
     detalle= models.TextField(max_length=100, null=True, blank=True)
-    imagen=models.ImageField(upload_to='media', null=True, blank=True, help_text='imagenes 500*900')
+    imagen=models.ImageField(upload_to='media', null=True, blank=True, help_text='Inicio - Sección Slider 500*900')
 
     def miniatura(self):
         return mark_safe("<img src='/media/%s' style='width: 200px'>"%self.imagen)
@@ -41,7 +42,8 @@ class Electroruedas_galeria(models.Model):
     imag_empresa = models.ImageField(upload_to='electroruedas', null=True, blank=True, help_text='Empresa - Seccion Quienes somos imagenes 300*500')
     imag_ventaja_01 = models.ImageField(upload_to='electroruedas', null=True, blank=True, help_text='Empresa - Seccion Ventaja 300*500')
     imag_ventaja_02 = models.ImageField(upload_to='electroruedas', null=True, blank=True, help_text='Empresa - Seccion Ventaja 300*500')
-    imagen_distribuidor=models.ImageField(upload_to='electroruedas', null=True, blank=True, help_text='Quieres ser distribuidor -  500*500')
+    imagen_distribuidor=models.ImageField(upload_to='electroruedas', null=True, blank=True, help_text='Quieres ser distribuidor -  500*900')
+    imagen_contacto = models.ImageField(upload_to='electroruedas', null=True, blank=True, help_text='Quieres ser distribuidor -  500*900')
 
 
 

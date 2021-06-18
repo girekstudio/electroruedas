@@ -406,17 +406,8 @@
                                                 {% endif %}
                                             </div>
 
-                                            <div class="addtocart-btn-wrapper">
-                                                <a href="/producto/{{ produ.id }}"
-                                                   class="text-decoration-none addtocart-btn" data-tooltip
-                                                   data-original-title="Add to Cart">
-                                                    <i class="icons icon-bag"></i>
-                                                </a>
-                                            </div>
 
-                                            <a href="" class="quick-view text-uppercase font-weight-semibold text-2">
-                                                QUICK VIEW
-                                            </a>
+
                                             <a href="/producto/{{ produ.id }}">
                                                 <div class="product-thumb-info-image product-thumb-info-image-effect">
                                                     {% for imagen in produ.imagen_product_set.all %}
